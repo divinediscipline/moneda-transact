@@ -9,7 +9,12 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: Dashboard },
-    { path: '/transaction', component: Transaction }
+    { path: '/transaction', component: Transaction },
+    {
+      path: '/procurement/new',
+      component: () => import('@/views/NewProcurementTransaction.vue')
+    }
+    
   ]
 })
 

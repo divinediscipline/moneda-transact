@@ -125,11 +125,11 @@ const selectOption = (option) => {
 }
 
 const handleNext = () => {
-  if (selectedOption.value) {
-    // Handle next step logic here
-    console.log('Selected option:', selectedOption.value)
+  if (selectedOption.value === 'Procurement') {
+    router.push('/procurement/new')
   }
 }
+
 </script>
 
 <style scoped>
