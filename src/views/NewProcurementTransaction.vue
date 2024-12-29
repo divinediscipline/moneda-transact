@@ -27,6 +27,10 @@
         >
           <component :is="tab.icon" class="w-5 h-5 mr-2" />
           {{ tab.name }}
+          <CheckCircleIcon 
+            v-if="tab.id === 'awarding' && isAwardingComplete"
+            class="w-5 h-5 ml-2 text-green-500" 
+          />
         </button>
       </div>
     </div>
@@ -39,19 +43,23 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <AwardingCompanyForm v-if="activeTab === 'awarding'" />
-      <SuppliersForm v-else />
+      <AwardingCompanyForm 
+        v-if="activeTab === 'awarding'"
+        @complete="handleAwardingComplete" 
+      />
+      <SuppliersForm v-else-if="activeTab === 'suppliers'" />
     </TransitionGroup>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { ArrowLeftIcon, BuildingOfficeIcon, UserGroupIcon } from '@heroicons/vue/24/outline'
+import { ArrowLeftIcon, BuildingOfficeIcon, UserGroupIcon, CheckCircleIcon } from '@heroicons/vue/24/outline'
 import AwardingCompanyForm from '@/components/procurement/AwardingCompanyForm.vue'
 import SuppliersForm from '@/components/procurement/SuppliersForm.vue'
 
 const activeTab = ref('awarding')
+const isAwardingComplete = ref(false)
 
 const tabs = [
   {
@@ -65,4 +73,9 @@ const tabs = [
     icon: UserGroupIcon
   }
 ]
+
+const handleAwardingComplete = () => {
+  isAwardingComplete.value = true
+  activeTab.value = 'suppliers'
+}
 </script>

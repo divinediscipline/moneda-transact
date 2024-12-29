@@ -136,13 +136,7 @@
 
     <!-- Action Buttons -->
     <div class="flex justify-end space-x-4 mt-8">
-      <button
-        type="button"
-        class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-        @click="handleSave"
-      >
-        Save
-      </button>
+      <!-- I think a save button being here as per the design, just causes confusion. what exactly does the save function do if we're yet to fill out the suppliers form?. I went ahead to remove it -->
       <button
         type="submit"
         class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
