@@ -1,0 +1,1 @@
+Edit the code in the AwardingCompanyForm.vue file such that the "value of contract container with class of specials is side by side with the payment terms SelectField. Use grids of tailwind classes. Both elements should have a gap of 16 and properly aligned within their container. Leave comments where code changes were made.

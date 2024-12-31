@@ -54,7 +54,7 @@ watch(file, (newFile) => {
       <InformationCircleIcon v-if="showInfo" class="inline w-4 h-4 ml-1 text-gray-400" />
     </label>
     <div class="flex items-center justify-center w-full">
-      <label class="flex flex-col items-center w-full px-4 py-6 bg-white text-gray-400 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer hover:border-primary-500">
+      <label class="flex flex-col items-center w-full px-4 py-6 bg-white text-gray-400 rounded-lg border-2 border-gray-200 border-solid cursor-pointer hover:border-primary-500">
         <DocumentArrowUpIcon class="w-8 h-8" />
         <span class="mt-2 text-sm">{{ file ? file.name : 'Upload file' }}</span>
         <input

@@ -111,7 +111,7 @@ const handleNext = () => {
                   </DialogTitle>
                 </div>
 
-                <div class="grid special grid-cols-3 gap-4 mb-8">
+                <div class="grid grid-cols-3 gap-4 mb-8">
                   <div
                     v-for="option in options"
                     :key="option.title"

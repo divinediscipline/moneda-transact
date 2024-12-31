@@ -1,3 +1,71 @@
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import type { TransactionPayload, AwardingCompany } from '../types/transaction';
+import { submitTransaction, getAwardingCompanies } from '../api/transaction';
+import { 
+  PAYMENT_TERMS,
+  INCOTERMS,
+  CURRENCIES
+} from '../constants/dropdownOptions';
+import SelectField from '../components/SelectField.vue';
+import FileUpload from '../components/FileUpload.vue';
+
+const router = useRouter();
+const loading = ref(false);
+const error = ref('');
+const awardingCompanies = ref<AwardingCompany[]>([]);
+
+const formData = ref<Partial<TransactionPayload>>({
+  transaction_type: 'procurement',
+  awarding_company_id: '',
+  estimated_value_currency: '',
+  awarding_payment_terms: '',
+  incoterms: '',
+});
+
+const files = ref({
+  purchase_order: null as File | null,
+  previous_invoice: null as File | null,
+  bank_statement: null as File | null,
+});
+
+const handleSubmit = async () => {
+  try {
+    loading.value = true;
+    error.value = '';
+
+    const form = new FormData();
+    
+    // Append form fields
+    Object.entries(formData.value).forEach(([key, value]) => {
+      if (value) form.append(key, value);
+    });
+
+    // Append files
+    Object.entries(files.value).forEach(([key, file]) => {
+      if (file) form.append(key, file);
+    });
+
+    await submitTransaction(form);
+    router.push('/');
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Failed to submit transaction';
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(async () => {
+  try {
+    awardingCompanies.value = await getAwardingCompanies();
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Failed to load awarding companies';
+  }
+});
+</script>
+
 <template>
   <div class="min-h-screen bg-gray-50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -76,70 +144,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import type { TransactionPayload, AwardingCompany } from '../types/transaction';
-import { submitTransaction, getAwardingCompanies } from '../api/transaction';
-import { 
-  PAYMENT_TERMS,
-  INCOTERMS,
-  CURRENCIES
-} from '../constants/dropdownOptions';
-import SelectField from '../components/SelectField.vue';
-import FileUpload from '../components/FileUpload.vue';
-
-const router = useRouter();
-const loading = ref(false);
-const error = ref('');
-const awardingCompanies = ref<AwardingCompany[]>([]);
-
-const formData = ref<Partial<TransactionPayload>>({
-  transaction_type: 'procurement',
-  awarding_company_id: '',
-  estimated_value_currency: '',
-  awarding_payment_terms: '',
-  incoterms: '',
-});
-
-const files = ref({
-  purchase_order: null as File | null,
-  previous_invoice: null as File | null,
-  bank_statement: null as File | null,
-});
-
-const handleSubmit = async () => {
-  try {
-    loading.value = true;
-    error.value = '';
-
-    const form = new FormData();
-    
-    // Append form fields
-    Object.entries(formData.value).forEach(([key, value]) => {
-      if (value) form.append(key, value);
-    });
-
-    // Append files
-    Object.entries(files.value).forEach(([key, file]) => {
-      if (file) form.append(key, file);
-    });
-
-    await submitTransaction(form);
-    router.push('/');
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to submit transaction';
-  } finally {
-    loading.value = false;
-  }
-};
-
-onMounted(async () => {
-  try {
-    awardingCompanies.value = await getAwardingCompanies();
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to load awarding companies';
-  }
-});
-</script>

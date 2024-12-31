@@ -30,7 +30,7 @@ const isActive = (path) => {
         <span>Dashboard</span>
       </router-link>
 
-      <router-link to="/transactions" :class="[
+      <router-link to="/procurement/new" :class="[
           'flex items-center space-x-3 p-3 rounded-lg mb-2',
           isActive('/procurement/new') ? 'bg-primary' : 'hover:bg-gray-800'
         ]">
