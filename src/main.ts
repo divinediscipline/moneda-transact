@@ -4,6 +4,7 @@ import './style.css'
 import App from './App.vue'
 import Dashboard from './views/Dashboard.vue'
 import Transaction from './views/Transaction.vue'
+import NewProcurementTransaction from './views/NewProcurementTransaction.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,7 +13,7 @@ const router = createRouter({
     { path: '/transaction', component: Transaction },
     {
       path: '/procurement/new',
-      component: () => import('@/views/NewProcurementTransaction.vue')
+      component: NewProcurementTransaction
     }
     
   ]

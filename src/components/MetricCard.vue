@@ -1,8 +1,21 @@
+<script setup lang="ts">
+import { DocumentTextIcon, CurrencyDollarIcon, ClockIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
+
+defineProps<{
+  title: string;
+  value: string | number;
+  icon: Component;
+  iconBgColor: string;
+  prefix?: string;
+  suffix?: string;
+}>();
+</script>
+
 <template>
-  <div class="bg-white rounded-lg p-6 shadow-sm">
+  <div class="bg-white rounded-[18px] p-6 shadow-sm border-solid border-[7px] border-[#E6E6E6]">
     <div class="flex items-center gap-3">
-      <div class="p-2 rounded-full" :class="iconBgColor">
-        <component :is="icon" class="w-5 h-5 text-white" />
+      <div v-if="icon" class="bg-gray-100 p-3 rounded-full">
+        <component :is="icon" class="w-6 h-6 text-gray-600" />
       </div>
       <div>
         <p class="text-sm text-gray-600">{{ title }}</p>
@@ -15,15 +28,3 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { DocumentTextIcon, CurrencyDollarIcon, ClockIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
-
-defineProps<{
-  title: string;
-  value: string | number;
-  icon: string;
-  iconBgColor: string;
-  prefix?: string;
-  suffix?: string;
-}>();
-</script>

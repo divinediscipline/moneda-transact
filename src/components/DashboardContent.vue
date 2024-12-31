@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import type { TransactionSummary } from '../types/summary';
+import TopSuppliers from './TopSuppliers.vue';
+import MetricCard from './MetricCard.vue';
+import TransactionCharts from './TransactionCharts.vue';
+import { formatCurrency } from '../utils/formatters';
+import TransactionIcon from '@/assets/icons/transaction.svg?component'
+// import transactionIconss from '@/assets/icons/transaction.ico'
+import StatCard from './StatCard.vue'
+import BanknotesIcon from '@/assets/icons/banknotes.svg'
+
+defineProps<{
+  summaryData: TransactionSummary | null;
+}>();</script>
+
 <template>
   <div>
     <div class="grid grid-cols-12 gap-6">
@@ -11,41 +26,41 @@
         <MetricCard
           title="Total Transactions"
           :value="summaryData?.totalTransactions || 0"
-          icon="DocumentTextIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-blue-500"
         />
         <MetricCard
           title="Transactions value"
           :value="formatCurrency(summaryData?.totalAmount)"
-          icon="CurrencyDollarIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-orange-500"
           prefix="$"
         />
         <MetricCard
           title="Transactions costs"
           value="128k"
-          icon="CurrencyDollarIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-orange-500"
           prefix="$"
         />
         <MetricCard
           title="Disbursements"
           value="93k"
-          icon="CurrencyDollarIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-blue-500"
           prefix="$"
         />
         <MetricCard
           title="Gross profitability"
           value="110k"
-          icon="ChartBarIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-orange-500"
           prefix="$"
         />
         <MetricCard
           title="Avg. Execution time"
           value="0"
-          icon="ClockIcon"
+          icon="TransactionIcon"
           icon-bg-color="bg-blue-500"
           suffix=" days"
         />
@@ -59,13 +74,3 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { TransactionSummary } from '../types/summary';
-import TopSuppliers from './TopSuppliers.vue';
-import MetricCard from './MetricCard.vue';
-import TransactionCharts from './TransactionCharts.vue';
-import { formatCurrency } from '../utils/formatters';
-
-defineProps<{
-  summaryData: TransactionSummary | null;
-}>();</script>

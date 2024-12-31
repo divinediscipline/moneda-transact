@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gradient-to-br from-brown-800 to-brown-900 rounded-lg p-6 text-white">
+  <div class="bg-gradient-to-b from-[#170901] to-[#762E01] rounded-lg p-6 pt-8 pb-28 text-white">
     <h3 class="text-lg font-medium mb-4">Top OEMs/Suppliers</h3>
     <div class="space-y-3">
-      <div v-for="supplier in suppliers" :key="supplier.name" class="flex justify-between items-center">
-        <span class="text-sm">{{ supplier.name }}</span>
-        <span class="font-medium">${{ formatNumber(supplier.amount) }}</span>
+      <div v-for="supplier in suppliers" :key="supplier.name" class="flex justify-between items-center bg-white rounded-full p-1.5 text-black">
+        <span class="text-xs">{{ supplier.name }}</span>
+        <span class="font-medium text-primary text-xs">${{ formatNumber(supplier.amount) }}</span>
       </div>
     </div>
   </div>
