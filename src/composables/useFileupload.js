@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { maxFileSize, allowedFileTypes } from '@/utils/validators'
 
-export function useFileUpload(options = { maxSize: 2, types: ['pdf', 'docx', 'pptx', 'xlsx'] }) {
+export const useFileUpload = (options = { maxSize: 2, types: ['pdf', 'docx', 'pptx', 'xlsx'] }) => {
   const file = ref(null)
   const error = ref('')
 
