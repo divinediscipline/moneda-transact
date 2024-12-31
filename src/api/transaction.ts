@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { TransactionPayload, AwardingCompany } from '../types/transaction';
+import type { AwardingCompany } from '../types/transaction';
 
 const BASE_URL = 'https://musa-mock-production.up.railway.app';
 

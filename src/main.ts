@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
 import App from './App.vue'
 import Dashboard from './views/Dashboard.vue'
-import Transaction from './views/Transaction.vue'
 import NewProcurementTransaction from './views/NewProcurementTransaction.vue'
 
 const router = createRouter({
