@@ -103,7 +103,6 @@ const fetchAwardingCompanies = async () => {
       label: company.name,
       value: company.id
     }));
-    console.log(2, awardingCompanies.value)
   } catch (error) {
     console.error("Failed to fetch awarding companies:", error);
   }

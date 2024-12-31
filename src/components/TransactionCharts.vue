@@ -1,14 +1,30 @@
 <script setup lang="ts">
+
+interface Transaction {
+  transaction_type: string;
+  value_usd: number;
+  count: number
+}
+
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { getTransactionTypeCounts } from "@/utils/validators"
+
+const props = defineProps<{
+  transactionTypeSummary: Transaction[];
+}>();
+
+const label_sequence = ['Services', 'Commodities', 'Procurement']
+const dataSequence = getTransactionTypeCounts(props.transactionTypeSummary, label_sequence)
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+
 const chartData = {
-  labels: ['Project', 'Commodities', 'Procurement'],
+  labels: label_sequence,
   datasets: [{
-    data: [45, 35, 20],
-    backgroundColor: ['#ff5722', '#2196f3', '#4a4a4a']
+    data: dataSequence,
+    backgroundColor: ['#CC5500', '#007ACC', '#4D3626']
   }]
 }
 

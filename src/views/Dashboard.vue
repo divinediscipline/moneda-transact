@@ -22,6 +22,7 @@ const { loading, error, summaryData, fetchSummary } = useSummary();
 onMounted(() => {
   fetchSummary();
 });
+
 </script>
 
 <template>
