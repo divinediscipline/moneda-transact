@@ -4,7 +4,6 @@ import svgLoader from 'vite-svg-loader'
 import path from 'path'
 
 export default defineConfig({
-  base: '/moneda/transact/',
   plugins: [
     vue(),
     svgLoader({
